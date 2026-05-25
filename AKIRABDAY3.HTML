@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Birthday Aki</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .container{
+      position:relative;
+      text-align:center;
+      width:100%;
+    }
+
+    /* OPEN BUTTON */
+
+    .open-btn{
+      padding:18px 45px;
+      border:none;
+      border-radius:40px;
+      background:#ff4f81;
+      color:white;
+      font-size:24px;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .open-btn:hover{
+      transform:scale(1.08);
+    }
+
+    /* MAIN BOX */
+
+    .message-box{
+      width:1400px;
+      max-width:98%;
+      height:820px;
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      display:none;
+
+      opacity:0;
+      transform:translateY(40px) scale(0.9);
+      transition:1s;
+
+      box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    .message-box.show{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .content{
+      display:flex;
+      height:100%;
+    }
+
+    /* IMAGE SIDES */
+
+    .left-images,
+    .right-images{
+      width:22%;
+      background:#ffe3ee;
+      padding:15px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
+
+    /* MESSAGE AREA */
+
+    .text-side{
+      width:56%;
+      padding:40px;
+      overflow:hidden;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    .text-side h1{
+      color:#ff4f81;
+      margin-bottom:30px;
+      font-size:42px;
+    }
+
+    /* TYPING EFFECT */
+
+    #typing-text{
+      font-size:24px;
+      line-height:2;
+      color:#444;
+      width:100%;
+      min-height:320px;
+      white-space:pre-wrap;
+
+      border-right:3px solid #ff4f81;
+
+      animation:blink 0.7s infinite;
+      padding-right:5px;
+    }
+
+    @keyframes blink{
+
+      50%{
+        border-color:transparent;
+      }
+
+    }
+
+    /* PHOTOS */
+
+    .photo{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      transform: 0.3s;
+        border-width: 10px;
+      border-style: groove;
+      border-color: beige;
+
+}
+    
+
+    .photo1 {
+        width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      transition:0.3s;
+      object-position: top;
+        border-width: 10px;
+      border-style: groove;
+      border-color: beige;
+    }
+
+    .photo2 {
+        width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      transition:0.3s;
+      object-position: bottom;
+      border-width: 10px;
+      border-style: groove;
+      border-color: beige;
+    }
+
+    .photo:hover{
+      transform:scale(1.03);
+    }
+
+    /* SCROLLBAR */
+
+    .left-images::-webkit-scrollbar,
+    .right-images::-webkit-scrollbar{
+      width:8px;
+    }
+
+    .left-images::-webkit-scrollbar-thumb,
+    .right-images::-webkit-scrollbar-thumb{
+      background:#ff9ec4;
+      border-radius:10px;
+    }
+
+    /* HEARTS */
+
+    .heart{
+      position:absolute;
+      font-size:28px;
+      animation:float 4s linear infinite;
+      opacity:0;
+    }
+
+    .heart:nth-child(1){
+      left:10%;
+      animation-delay:0s;
+    }
+
+    .heart:nth-child(2){
+      left:50%;
+      animation-delay:1s;
+    }
+
+    .heart:nth-child(3){
+      left:85%;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+
+      0%{
+        transform:translateY(0);
+        opacity:0;
+      }
+
+      20%{
+        opacity:1;
+      }
+
+      100%{
+        transform:translateY(-700px);
+        opacity:0;
+      }
+
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- OPEN BUTTON -->
+
+    <button class="open-btn" onclick="openMessage()">
+      💌 Open Me
+    </button>
+
+    <!-- MUSIC -->
+
+    <audio id="music" loop>
+      <source src="music/One Friend.mp3">
+    </audio>
+
+    <!-- HEARTS -->
+
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+
+    <!-- MESSAGE BOX -->
+
+    <div class="message-box" id="messageBox">
+
+      <div class="content">
+
+        <!-- LEFT SIDE IMAGES -->
+
+        <div class="left-images">
+
+          <img src="PICTURES/111.jpg" class="photo">
+          <img src="PICTURES/333.jpg" class="photo1">
+          <img src="PICTURES/555.jpg" class="photo">
+          <img src="PICTURES/5682.jpg" class="photo">
+
+        </div>
+
+        <!-- CENTER MESSAGE -->
+
+        <div class="text-side">
+
+          <h1>Happy Birthday Akira!!! 🎂</h1>
+
+          <p id="typing-text"></p>
+
+        </div>
+
+        <!-- RIGHT SIDE IMAGES -->
+
+        <div class="right-images">
+
+          <img src="PICTURES/444.jpg" class="photo2">
+          <img src="PICTURES/5680.jpg" class="photo">
+          <img src="PICTURES/5684.jpg" class="photo">
+          <img src="PICTURES/5686.jpg" class="photo">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function openMessage(){
+
+      const box = document.getElementById("messageBox");
+      const music = document.getElementById("music");
+
+      box.style.display = "block";
+
+      setTimeout(() => {
+        box.classList.add("show");
+      }, 100);
+
+      music.play();
+
+      document.querySelector(".open-btn").style.display = "none";
+
+      startTyping();
+    }
+
+    // PARAGRAPHS
+
+    const paragraphs = [
+
+`Hi teh, happy birthday.`,
+
+`Honestly, I don’t even know where to start because there are so many things I want to thank you for. You became one of the people who made my life lighter and happier just by being there. Through all the laughs, random conversations, serious moments, and even silent days, your presence always meant so much to me.`,
+
+`On your special day, I just want you to forget every stress, pressure, and problem for a while. You deserve a day filled with peace, genuine happiness, love, and people who truly appreciate you. I hope today reminds you how special and valuable you are, not only to me but also to everyone lucky enough to know you.`,
+
+`Thank you for being such a wonderful friend. Thank you for understanding me in ways other people can’t, for staying even during difficult times, and for always giving comfort without even trying too hard. Some people come and go, but you became someone I truly treasure and never want to lose.`,
+
+`I hope this new year of your life brings healing from all the things that hurt you, strength for every challenge that comes your way, and success in everything you work hard for. May your heart always stay kind despite everything life throws at you. I also hope you never forget how deserving you are of love, happiness, and every beautiful thing this world can offer.`,
+
+`Please continue chasing your dreams, believing in yourself, and becoming the person you want to be. There may be hard days ahead, but I know you’re strong enough to get through all of them. And no matter what happens, I’ll always be here cheering for you and supporting you from the sidelines.`,
+
+`So for today, just smile more, laugh louder, take more pictures, eat your favorite food, and enjoy every single moment because this day is yours. You deserve to feel celebrated, appreciated, and deeply loved.`,
+
+`Happy birthday again, Aki. Thank you for existing and for being one of the best parts of my life. 🎂🎈✨`,
+
+`from: Super bait, hindi mapang asar, matulungin, at hindi nangingiliti mong kaibigan VINCENT 💌`
+
+    ];
+
+    const typingText = document.getElementById("typing-text");
+
+    let paragraphIndex = 0;
+    let charIndex = 0;
+
+    function startTyping(){
+
+      if(paragraphIndex >= paragraphs.length){
+        paragraphIndex = 0;
+      }
+
+      let currentParagraph = paragraphs[paragraphIndex];
+
+      typingText.innerHTML = "";
+
+      let typingInterval = setInterval(() => {
+
+        typingText.innerHTML += currentParagraph.charAt(charIndex);
+
+        charIndex++;
+
+        if(charIndex >= currentParagraph.length){
+
+          clearInterval(typingInterval);
+
+          setTimeout(() => {
+
+            eraseText();
+
+          }, 2500);
+
+        }
+
+      }, 80);
+
+    }
+
+    function eraseText(){
+
+      let eraseInterval = setInterval(() => {
+
+        typingText.innerHTML =
+        typingText.innerHTML.slice(0, -1);
+
+        if(typingText.innerHTML.length == 0){
+
+          clearInterval(eraseInterval);
+
+          paragraphIndex++;
+          charIndex = 0;
+
+          setTimeout(() => {
+
+            startTyping();
+
+          }, 500);
+
+        }
+
+      }, 1);
+
+    }
+
+  </script>
+
+</body>
+</html>
